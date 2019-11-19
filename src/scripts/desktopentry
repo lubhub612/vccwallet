@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=VccWallet
+Comment=Full node and wallet for Vcoin
+GenericName=Wallet
+Exec=/usr/local/bin/vccwallet %u
+Icon=vccwallet.xpm
+Type=Application
+StartupNotify=true
+StartupWMClass=vccwallet
+Categories=Utility;
+MimeType=x-scheme-handler/vcoin;
+Keywords=vccwallet;
+
