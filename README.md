@@ -16,8 +16,11 @@ tar -xvf vccwallet-v0.0.1.tar.gz
 ```
 
 ### Windows
-[Instruction]
-Please disable your antivirus before downloding the zip file and allow the firewall while installing...
+```
+Attention
+```
+Please disable your antivirus before downloding the zip file and allow the firewall while installing.
+
 You can download the release binary, unzip it and double click on `vccwallet.exe` to start.
 
 
