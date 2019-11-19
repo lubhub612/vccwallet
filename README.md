@@ -48,6 +48,4 @@ make -j$(nproc)
 ./vccwallet
 ```
 
-```
 
-### 
