@@ -197,7 +197,7 @@ void Settings::saveRestoreTableHeader(QTableView* table, QDialog* d, QString tab
 void Settings::openAddressInExplorer(QString address) {
     QString url;
     if (Settings::getInstance()->isTestnet()) {
-        url = "https://chain.so/address/VCCTEST/" + address;
+        url = "https://vccexplorer.online/address/VCCTEST/" + address;
     } else {
         url = "https://vccexplorer.online/accounts/" + address;
     }
@@ -207,7 +207,7 @@ void Settings::openAddressInExplorer(QString address) {
 void Settings::openTxInExplorer(QString txid) {
     QString url;
     if (Settings::getInstance()->isTestnet()) {
-        url = "https://chain.so/tx/VCCTEST/" + txid;
+        url = "https://vccexplorer.online/tx/VCCTEST/" + txid;
     }
     else {
         url = "https://vccexplorer.online/transactions/" + txid;
@@ -254,7 +254,7 @@ const QString Settings::txidStatusMessage = QString(QObject::tr("Tx submitted (r
 
 QString Settings::getTokenName() {
     if (Settings::getInstance()->isTestnet()) {
-        return "TAZ";
+        return "TESTVCC";
     } else {
         return "VCC";
     }

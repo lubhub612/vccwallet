@@ -186,7 +186,7 @@ void ConnectionLoader::createVcoinConf() {
     QTextStream out(&file); 
     
     out << "server=1\n";
-    out << "addnode=mainnet.z.cash\n";
+    out << "addnode=178.128.222.68\n";
     out << "rpcuser=vcc-qt-wallet\n";
     out << "rpcpassword=" % randomPassword() << "\n";
 
@@ -221,9 +221,8 @@ void ConnectionLoader::downloadParams(std::function<void(void)> cb) {
     downloadQueue->enqueue(QUrl("https://z.cash/downloads/sapling-output.params"));
     downloadQueue->enqueue(QUrl("https://z.cash/downloads/sapling-spend.params"));  
     downloadQueue->enqueue(QUrl("https://z.cash/downloads/sprout-groth16.params"));
-    // Comment out downloading the Sprout keys because they were deprecated with https://github.com/vcoin/vcoin/pull/4060
-    // downloadQueue->enqueue(QUrl("https://z.cash/downloads/sprout-proving.key"));
-    // downloadQueue->enqueue(QUrl("https://z.cash/downloads/sprout-verifying.key"));
+     downloadQueue->enqueue(QUrl("https://z.cash/downloads/sprout-proving.key"));
+     downloadQueue->enqueue(QUrl("https://z.cash/downloads/sprout-verifying.key"));
 
     doNextDownload(cb);    
 }
@@ -547,11 +546,11 @@ QString ConnectionLoader::vcoinConfWritableLocation() {
 
 QString ConnectionLoader::vcoinParamsDir() {
     #ifdef Q_OS_LINUX
-    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(".vcoin-params"));
+    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(".zcash-params"));
 #elif defined(Q_OS_DARWIN)
-    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath("Library/Application Support/VcoinParams"));
+    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath("Library/Application Support/ZcashParams"));
 #else
-    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("../../VcoinParams"));
+    auto paramsLocation = QDir(QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath("../../ZcashParams"));
 #endif
 
     if (!paramsLocation.exists()) {
@@ -569,9 +568,8 @@ bool ConnectionLoader::verifyParams() {
     if (!QFile(paramsDir.filePath("sapling-output.params")).exists()) return false;
     if (!QFile(paramsDir.filePath("sapling-spend.params")).exists()) return false;
     if (!QFile(paramsDir.filePath("sprout-groth16.params")).exists()) return false;
-    // Comment out downloading the Sprout keys because they were deprecated with https://github.com/vcoin/vcoin/pull/4060
-    // if (!QFile(paramsDir.filePath("sprout-proving.key")).exists()) return false;
-    // if (!QFile(paramsDir.filePath("sprout-verifying.key")).exists()) return false;
+     if (!QFile(paramsDir.filePath("sprout-proving.key")).exists()) return false;
+     if (!QFile(paramsDir.filePath("sprout-verifying.key")).exists()) return false;
 
     return true;
 }
@@ -632,7 +630,7 @@ std::shared_ptr<ConnectionConfig> ConnectionLoader::autoDetectVcoinConf() {
         if (name == "testnet" &&
             value == "1"  &&
             vcoinconf->port.isEmpty()) {
-                vcoinconf->port = "18232";
+                vcoinconf->port = "26424";
         }
         if (name == "ibdskiptxverification" && value == "1") {
             vcoinconf->skiptxverification = true;
@@ -640,7 +638,7 @@ std::shared_ptr<ConnectionConfig> ConnectionLoader::autoDetectVcoinConf() {
     }
 
     // If rpcport is not in the file, and it was not set by the testnet=1 flag, then go to default
-    if (vcoinconf->port.isEmpty()) vcoinconf->port = "8232";
+    if (vcoinconf->port.isEmpty()) vcoinconf->port = "16424";
     file.close();
 
     // In addition to the vcoin.conf file, also double check the params. 

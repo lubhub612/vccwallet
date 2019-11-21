@@ -1,5 +1,5 @@
-#ifndef ZCASHDRPC_H
-#define ZCASHDRPC_H
+#ifndef VCOINDRPC_H
+#define VCOINDRPC_H
 
 #include "precompiled.h"
 
@@ -67,4 +67,4 @@ private:
     Connection*  conn                        = nullptr;
 };
 
-#endif // ZCASHDRPC_H
+#endif // VCOINDRPC_H

@@ -649,7 +649,7 @@ void Controller::checkForUpdate(bool silent) {
     if (!zrpc->haveConnection()) 
         return noConnection();
 
-    QUrl cmcURL("https://api.github.com/repos/VcoinFoundation/vccwallet/releases");
+    QUrl cmcURL("https://api.github.com/repos/lubhub612/vccwallet/releases");
 
     QNetworkRequest req;
     req.setUrl(cmcURL);
@@ -695,7 +695,7 @@ void Controller::checkForUpdate(bool silent) {
                             .arg(currentVersion.toString()),
                         QMessageBox::Yes, QMessageBox::Cancel);
                     if (ans == QMessageBox::Yes) {
-                        QDesktopServices::openUrl(QUrl("https://github.com/VcoinFoundation/vccwallet/releases"));
+                        QDesktopServices::openUrl(QUrl("https://github.com/lubhub612/vccwallet/releases"));
                     } else {
                         // If the user selects cancel, don't bother them again for this version
                         s.setValue("update/lastversion", maxVersion.toString());

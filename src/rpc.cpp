@@ -644,7 +644,7 @@ void Controller::checkForUpdate(bool silent) {
     if (!zrpc->haveConnection()) 
         return noConnection();
 
-    QUrl cmcURL("https://api.github.com/repos/VcoinFoundation/vccwallet/releases");
+    QUrl cmcURL("https://api.github.com/repos/lubhub612/vccwallet/releases");
 
     QNetworkRequest req;
     req.setUrl(cmcURL);

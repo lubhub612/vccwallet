@@ -62,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // File a bug
     QObject::connect(ui->actionFile_a_bug, &QAction::triggered, [=]() {
-        QDesktopServices::openUrl(QUrl("https://github.com/vcoinfoundation/vccwallet/issues/new"));
+        QDesktopServices::openUrl(QUrl("https://github.com/lubhub612/vccwallet/issues/new"));
     });
 
     // Set up check for updates action
@@ -160,7 +160,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
  
 void MainWindow::createWebsocket(QString wormholecode) {
-    qDebug() << "Listening for app connections on port 8237";
+    qDebug() << "Listening for app connections on port 16424";
     // Create the websocket server, for listening to direct connections
     wsserver = new WSServer(8237, false, this);
 
